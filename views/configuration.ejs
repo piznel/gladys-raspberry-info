@@ -1,0 +1,177 @@
+<script src="/hooks/rpi-info/js/rpi.config.js"></script>
+<script src="/hooks/rpi-info/js/rpi.service.js"></script>
+<script src="/hooks/rpi-info/js/rpi.controller.js"></script>
+
+<div data-ng-controller="rpiCtrl as vm">
+  <div class="row" ng-show="!vm.ready">
+    <div class="col-centered col-md-6 col-md-offset-6">
+      <div class="spinner-box">
+        <div class="spinner">
+          <div class="double-bounce1"></div>
+          <div class="double-bounce2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" ng-show="vm.ready" ng-cloak>
+    <div class="col-md-12">
+      <button class="btn btn-flat btn-primary margin" ng-click="vm.refresh()"><i class="fa fa-refresh"></i> {{ 'REFRESH' |
+        translate }}</button>
+    </div>
+  </div>
+
+  <div class="row" ng-show="vm.ready" ng-cloak>
+    <!-- Raspberry Model-->
+    <div class="col-centered col-md-6">
+      <div class="box skin-box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Périphérique</h3>
+        </div>
+        <div class="box-body table-responsive">
+          <table class="table table-striped" ng-model="vm.model">
+            <tbody>
+              <tr>
+                <td style="vertical-align: middle">Model</td>
+                <td style="vertical-align: middle">{{full_name}}</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle">Date de sortie</td>
+                <td style="vertical-align: middle">{{date}}</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle">Ram</td>
+                <td style="vertical-align: middle">{{memory}}</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle">Note</td>
+                <td style="vertical-align: middle">{{notes}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="box-body table-responsive">
+          <table class="table table-striped" ng-model="vm.core">
+            <tbody>
+              <tr>
+                <td style="vertical-align: middle">Processeur</td>
+                <td style="vertical-align: middle">{{model}}</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle">Nombre de coeur</td>
+                <td style="vertical-align: middle">{{count}}</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle">Fréquence</td>
+                <td style="vertical-align: middle">{{frequency}}</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle">Tension</td>
+                <td style="vertical-align: middle">{{voltage}}</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle">Température</td>
+                <td style="vertical-align: middle">{{temperature}}</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle">N° de série</td>
+                <td style="vertical-align: middle">{{serial}}</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle">Révision</td>
+                <td style="vertical-align: middle">{{revision}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- End Raspberry Model-->
+
+    <!-- System -->
+    <div class="col-centered col-md-6" ng-model="vm.model">
+      <div class="box skin-box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Système</h3>
+        </div>
+        <div class="box-body table-responsive">
+          <table class="table table-striped" ng-model="vm.system">
+            <tbody>
+              <tr>
+                <td style="vertical-align: middle">Os</td>
+                <td style="vertical-align: middle">{{os}}</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle">Release</td>
+                <td style="vertical-align: middle">{{release}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="box-body table-responsive">
+          <table class="table table-striped" ng-model="vm.network">
+            <tbody>
+              <tr>
+                <td style="vertical-align: middle">hostname</td>
+                <td style="vertical-align: middle">{{hostname}}</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle">IP locale</td>
+                <td style="vertical-align: middle">{{IpLocal}}</td>
+              </tr>
+              <tr>
+                  <td style="vertical-align: middle">IP externe</td>
+                  <td style="vertical-align: middle">{{ipExterne}}</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="box-body table-responsive">
+            <table class="table table-striped" ng-model="vm.memory">
+              <tbody>
+                <tr>
+                  <td style="vertical-align: middle">Mémoire CPU</td>
+                  <td style="vertical-align: middle">{{cpu}}</td>
+                </tr>
+                <tr>
+                  <td style="vertical-align: middle">Mémoire GPU</td>
+                  <td style="vertical-align: middle">{{gpu}}</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: middle">IP externe</td>
+                    <td style="vertical-align: middle">{{ipExterne}}</td>
+                  </tr>
+              </tbody>
+            </table>
+          </div>
+
+      </div>
+    </div>
+    <!-- End Raspberry Model-->
+
+
+
+  </div>
+  <!-- row -->
+  <div class="modal fade alexa-help" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div>
+            {{ 'ALEXA_TEXT_1' | translate }}<br />
+            {{ 'ALEXA_TEXT_2' | translate }}<br />
+            {{ 'ALEXA_TEXT_3' | translate }}<br />
+            {{ 'ALEXA_TEXT_4' | translate }}<br />
+            {{ 'ALEXA_TEXT_5' | translate }}
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary btn-flat" data-dismiss="modal">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
