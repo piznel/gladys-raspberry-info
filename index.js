@@ -2,10 +2,10 @@ module.exports = function(sails) {
   const rpiController = require('./controller/rpiController.js');
   const install = require('./lib/rpi.install.js');
   const uninstall = require('./lib/rpi.uninstall.js');
-  const rpi = require('./lib/rpi.devices.update.js');
+  const init = require('./lib/rpi.init.js');
 
   gladys.on('ready', function() {
-    rpi.deviceUpdate();
+    init();
   });
 
   return {

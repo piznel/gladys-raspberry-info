@@ -1,5 +1,3 @@
-import { chmod } from "fs";
-
 (function() {
   'use strict';
 
@@ -12,7 +10,8 @@ import { chmod } from "fs";
   function rpiCtrl(rpiService, $scope) {
     /* jshint validthis: true */
     var vm = this;
-
+    vm.remoteIsBusy = false;
+    vm.ready = false;
     vm.core = '';
     vm.model = '';
     vm.system = '';
@@ -32,7 +31,7 @@ import { chmod } from "fs";
           return rpiService.infoModel()
         })
         .then(function(data) {
-          vm.core = data.data
+          vm.model = data.data
           return rpiService.infoSystem()
         })
         .then(function(data) {

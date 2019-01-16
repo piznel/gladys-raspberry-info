@@ -16,71 +16,67 @@
 
   <div class="row" ng-show="vm.ready" ng-cloak>
     <div class="col-md-12">
-      <button class="btn btn-flat btn-primary margin" ng-click="vm.refresh()"><i class="fa fa-refresh"></i> {{ 'REFRESH' |
+      <button class="btn btn-flat btn-primary margin" ng-click="vm.refresh()"><i class="fa fa-refresh"></i> {{
+        'REFRESH' |
         translate }}</button>
     </div>
   </div>
 
   <div class="row" ng-show="vm.ready" ng-cloak>
     <!-- Raspberry Model-->
-    <div class="col-centered col-md-6">
-      <div class="box skin-box box-primary">
+    <div class="col-centered col-md-4">
+      <div class="box box-widget widget-user-2 card grid-item">
         <div class="box-header with-border">
-          <h3 class="box-title">Périphérique</h3>
+          <h4 class="widget-user-username">{{ 'MATERIEL' | translate }}</h4>
         </div>
         <div class="box-body table-responsive">
-          <table class="table table-striped" ng-model="vm.model">
+          <table class="table table-striped">
             <tbody>
+              <th colspan="2">Modèle</th>
               <tr>
                 <td style="vertical-align: middle">Model</td>
-                <td style="vertical-align: middle">{{full_name}}</td>
+                <td style="vertical-align: middle">{{vm.model.full_name}}</td>
               </tr>
               <tr>
                 <td style="vertical-align: middle">Date de sortie</td>
-                <td style="vertical-align: middle">{{date}}</td>
+                <td style="vertical-align: middle">{{vm.model.date}}</td>
               </tr>
               <tr>
                 <td style="vertical-align: middle">Ram</td>
-                <td style="vertical-align: middle">{{memory}}</td>
+                <td style="vertical-align: middle">{{vm.model.memory}}</td>
               </tr>
               <tr>
                 <td style="vertical-align: middle">Note</td>
-                <td style="vertical-align: middle">{{notes}}</td>
+                <td style="vertical-align: middle">{{vm.model.notes}}</td>
               </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="box-body table-responsive">
-          <table class="table table-striped" ng-model="vm.core">
-            <tbody>
+              <th colspan="2">Processeur</th>
               <tr>
-                <td style="vertical-align: middle">Processeur</td>
-                <td style="vertical-align: middle">{{model}}</td>
+                <td style="vertical-align: middle">Type</td>
+                <td style="vertical-align: middle">{{vm.core.model}}</td>
               </tr>
               <tr>
                 <td style="vertical-align: middle">Nombre de coeur</td>
-                <td style="vertical-align: middle">{{count}}</td>
+                <td style="vertical-align: middle">{{vm.core.count}}</td>
               </tr>
               <tr>
                 <td style="vertical-align: middle">Fréquence</td>
-                <td style="vertical-align: middle">{{frequency}}</td>
+                <td style="vertical-align: middle">{{vm.core.frequency}}</td>
               </tr>
               <tr>
                 <td style="vertical-align: middle">Tension</td>
-                <td style="vertical-align: middle">{{voltage}}</td>
+                <td style="vertical-align: middle">{{vm.core.voltage}} V</td>
               </tr>
               <tr>
                 <td style="vertical-align: middle">Température</td>
-                <td style="vertical-align: middle">{{temperature}}</td>
+                <td style="vertical-align: middle">{{vm.core.temperature}} °C</td>
               </tr>
               <tr>
                 <td style="vertical-align: middle">N° de série</td>
-                <td style="vertical-align: middle">{{serial}}</td>
+                <td style="vertical-align: middle">{{vm.core.serial}}</td>
               </tr>
               <tr>
                 <td style="vertical-align: middle">Révision</td>
-                <td style="vertical-align: middle">{{revision}}</td>
+                <td style="vertical-align: middle">{{vm.core.revision}}</td>
               </tr>
             </tbody>
           </table>
@@ -90,63 +86,53 @@
     <!-- End Raspberry Model-->
 
     <!-- System -->
-    <div class="col-centered col-md-6" ng-model="vm.model">
-      <div class="box skin-box box-primary">
-        <div class="box-header with-border">
-          <h3 class="box-title">Système</h3>
-        </div>
+    <div class="col-centered col-md-4">
+        <div class="box box-widget widget-user-2 card grid-item">
+            <div class="box-header with-border">
+              <h4 class="widget-user-username">{{ 'SYSTEME' | translate }}</h4>
+            </div>
         <div class="box-body table-responsive">
-          <table class="table table-striped" ng-model="vm.system">
+          <table class="table table-striped">
             <tbody>
+              <th colspan="2">Système</th>
               <tr>
                 <td style="vertical-align: middle">Os</td>
-                <td style="vertical-align: middle">{{os}}</td>
+                <td style="vertical-align: middle">{{vm.system.os}}</td>
               </tr>
               <tr>
                 <td style="vertical-align: middle">Release</td>
-                <td style="vertical-align: middle">{{release}}</td>
+                <td style="vertical-align: middle">{{vm.system.release}}</td>
               </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="box-body table-responsive">
-          <table class="table table-striped" ng-model="vm.network">
-            <tbody>
+              <th colspan="2">Réseau</th>
               <tr>
                 <td style="vertical-align: middle">hostname</td>
-                <td style="vertical-align: middle">{{hostname}}</td>
+                <td style="vertical-align: middle">{{vm.network.hostname}}</td>
               </tr>
-              <tr>
+              <tr colspan="2">
                 <td style="vertical-align: middle">IP locale</td>
-                <td style="vertical-align: middle">{{IpLocal}}</td>
+              <tr ng-repeat="face in vm.network.iplocal">
+                <td>
+                    &emsp;{{face.name}}
+                </td>
+                <td>
+                  {{face.address}}
+                </td>
+              <tr>
+                <td style="vertical-align: middle">IP externe</td>
+                <td style="vertical-align: middle">{{vm.network.ipExterne}}</td>
+              </tr>
+              <th colspan="2">Répartition mémoire</th>
+              <tr>
+                <td style="vertical-align: middle">Mémoire CPU</td>
+                <td style="vertical-align: middle">{{vm.memory.cpu}}</td>
               </tr>
               <tr>
-                  <td style="vertical-align: middle">IP externe</td>
-                  <td style="vertical-align: middle">{{ipExterne}}</td>
-                </tr>
+                <td style="vertical-align: middle">Mémoire GPU</td>
+                <td style="vertical-align: middle">{{vm.memory.gpu}}</td>
+              </tr>
             </tbody>
           </table>
         </div>
-
-        <div class="box-body table-responsive">
-            <table class="table table-striped" ng-model="vm.memory">
-              <tbody>
-                <tr>
-                  <td style="vertical-align: middle">Mémoire CPU</td>
-                  <td style="vertical-align: middle">{{cpu}}</td>
-                </tr>
-                <tr>
-                  <td style="vertical-align: middle">Mémoire GPU</td>
-                  <td style="vertical-align: middle">{{gpu}}</td>
-                </tr>
-                <tr>
-                    <td style="vertical-align: middle">IP externe</td>
-                    <td style="vertical-align: middle">{{ipExterne}}</td>
-                  </tr>
-              </tbody>
-            </table>
-          </div>
 
       </div>
     </div>

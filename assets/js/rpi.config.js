@@ -1,9 +1,9 @@
 var translationsEN = {
-    SAVE_SETTINGS: "Save"
+    MATERIEL: "Materiel"
   };
   
   var translationsFR = {
-    SAVE_SETTINGS: "Enregistrer"
+    MATERIEL: "Matériel"
   };
   
   angular
