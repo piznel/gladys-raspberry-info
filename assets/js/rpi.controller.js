@@ -26,10 +26,14 @@
 
     function activate() {
       vm.remoteIsBusy = true;
+
+      var child = document.getElementsByClassName('nav nav-tabs');
+      child[0].parentNode.removeChild(child[0]);
+
       return rpiService.stat()
         .then(function(data) {
           if (data.status == 200) {
-            vm.stat = data.data
+            vm.stat = statNetwork(data.data)
           } else {
             rpiService.errorNotificationTranslated('ERROR')
           }
@@ -82,10 +86,22 @@
         })
     }
 
+    function statNetwork(stat) {
+      let net = stat.net;
+      let tempNet = {};
+      for(var face in net) {
+        if(parseInt(net[face].received) > 0 || parseInt(net[face].transmit) > 0) {
+          tempNet[face] = net[face]
+        }
+      }
+      stat.net = tempNet;
+      return stat
+    }
+
     function refresh() {
-      rpiService.statistic()
+      return rpiService.stat()
         .then(function(data) {
-          vm.stat = data.data
+          vm.stat = statNetwork(data.data)
         })
     }
   }
