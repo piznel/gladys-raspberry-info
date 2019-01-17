@@ -15,6 +15,7 @@
         infoSystem: infoSystem,
         infoNetwork: infoNetwork,
         infoMemory: infoMemory,
+        statistic: statistic,
         successNotificationTranslated: successNotificationTranslated,
         errorNotificationTranslated: errorNotificationTranslated
       };
@@ -39,6 +40,10 @@
 
       function infoMemory() {
         return $http({ method: 'GET', url: '/rpi/memory/' });
+      }
+
+      function statistic() {
+        return $http({ method: 'GET', url: '/rpi/statistic/' });
       }
 
       function successNotificationTranslated(key, complement) {

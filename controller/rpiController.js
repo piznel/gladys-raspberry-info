@@ -1,4 +1,5 @@
 const shared = require('../lib/rpi.shared.js')
+const statistic = require('../lib/rpi.statistic.js')
 
 module.exports = {
 
@@ -20,5 +21,13 @@ module.exports = {
 
   infoMemory: function(req, res, next) {
     return res.json(shared.memory)
-  }
+  },
+
+  statistic: function(req, res, next) {
+    statistic()
+      .then((result) => {
+        res.json(result)
+      })
+      .catch(next);
+  },
 }

@@ -18,13 +18,15 @@ module.exports = function(sails) {
         'get /rpi/system': (req, res, next) => sails.hooks.policies.middleware.checktoken(req, res, next),
         'get /rpi/network': (req, res, next) => sails.hooks.policies.middleware.checktoken(req, res, next),
         'get /rpi/memory': (req, res, next) => sails.hooks.policies.middleware.checktoken(req, res, next),
+        'get /rpi/statistic': (req, res, next) => sails.hooks.policies.middleware.checktoken(req, res, next)
       },
       after: {
         'get /rpi/core': rpiController.infoCore,
         'get /rpi/model': rpiController.infoModel,
         'get /rpi/system': rpiController.infoSystem,
         'get /rpi/network': rpiController.infoNetwork,
-        'get /rpi/memory': rpiController.infoMemory
+        'get /rpi/memory': rpiController.infoMemory,
+        'get /rpi/statistic': rpiController.statistique
       }
     }
   };

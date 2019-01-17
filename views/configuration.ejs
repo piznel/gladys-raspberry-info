@@ -32,50 +32,66 @@
         <div class="box-body table-responsive">
           <table class="table table-striped">
             <tbody>
-              <th colspan="2">Modèle</th>
+              <th colspan="2">{{ 'MODEL_RASPBERRY' | translate }}</th>
               <tr>
-                <td style="vertical-align: middle">Model</td>
+                <td style="vertical-align: middle">{{ 'TYPE_RASPBERRY' | translate }}</td>
                 <td style="vertical-align: middle">{{vm.model.full_name}}</td>
               </tr>
               <tr>
-                <td style="vertical-align: middle">Date de sortie</td>
+                <td style="vertical-align: middle">{{ 'MARKETING_DATE' | translate }}</td>
                 <td style="vertical-align: middle">{{vm.model.date}}</td>
               </tr>
               <tr>
-                <td style="vertical-align: middle">Ram</td>
-                <td style="vertical-align: middle">{{vm.model.memory}}</td>
+                <td style="vertical-align: middle">{{ 'TOTAL_MEMORY' | translate }}</td>
+                <td style="vertical-align: middle">{{vm.model.memory}} Mo</td>
               </tr>
               <tr>
-                <td style="vertical-align: middle">Note</td>
+                <td style="vertical-align: middle;padding-left:2em">{{ 'CPU_MEMORY' | translate }}</td>
+                <td style="vertical-align: middle">{{vm.memory.cpu}} Mo</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle;padding-left:2em">{{ 'GPU_MEMORY' | translate }}</td>
+                <td style="vertical-align: middle">{{vm.memory.gpu}} Mo</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle">{{ 'COMMENT' | translate }}</td>
                 <td style="vertical-align: middle">{{vm.model.notes}}</td>
               </tr>
-              <th colspan="2">Processeur</th>
+              <th colspan="2">{{ 'PROCESSOR' | translate }}</th>
               <tr>
-                <td style="vertical-align: middle">Type</td>
+                <td style="vertical-align: middle">{{ 'MODEL_PROCESSOR' | translate }}</td>
                 <td style="vertical-align: middle">{{vm.core.model}}</td>
               </tr>
               <tr>
-                <td style="vertical-align: middle">Nombre de coeur</td>
+                <td style="vertical-align: middle">{{ 'CORE_NUMBER' | translate }}</td>
                 <td style="vertical-align: middle">{{vm.core.count}}</td>
               </tr>
               <tr>
-                <td style="vertical-align: middle">Fréquence</td>
-                <td style="vertical-align: middle">{{vm.core.frequency}}</td>
+                <td style="vertical-align: middle">{{ 'FREQUENCY_PROCESSOR' | translate }}</td>
+                <td style="vertical-align: middle">{{vm.core.frequency}} MHz</td>
               </tr>
               <tr>
-                <td style="vertical-align: middle">Tension</td>
+                <td style="vertical-align: middle">{{ 'VOLTAGE_PROCESSOR' | translate }}</td>
                 <td style="vertical-align: middle">{{vm.core.voltage}} V</td>
               </tr>
               <tr>
-                <td style="vertical-align: middle">Température</td>
-                <td style="vertical-align: middle">{{vm.core.temperature}} °C</td>
+                <td colspan="2" style="vertical-align: middle">{{ 'TEMPERATURE' | translate }}</td>
               </tr>
               <tr>
-                <td style="vertical-align: middle">N° de série</td>
+                  <td style="padding-left:2em">{{ 'TEMPERATURE_CPU' | translate }}</td>
+                  <td style="vertical-align: middle">{{vm.core.temp_cpu}} °C</td>
+              </tr>
+              <tr>
+                  <tr>
+                      <td style="padding-left:2em">{{ 'TEMPERATURE_GPU' | translate }}</td>
+                      <td style="vertical-align: middle">{{vm.core.temp_gpu}} °C</td>
+                  </tr>
+                  <tr>
+                <td style="vertical-align: middle">{{ 'SERIAL_PROCESSOR' | translate }}</td>
                 <td style="vertical-align: middle">{{vm.core.serial}}</td>
               </tr>
               <tr>
-                <td style="vertical-align: middle">Révision</td>
+                <td style="vertical-align: middle">{{ 'REVISION_PROCESSOR' | translate }}</td>
                 <td style="vertical-align: middle">{{vm.core.revision}}</td>
               </tr>
             </tbody>
@@ -94,41 +110,33 @@
         <div class="box-body table-responsive">
           <table class="table table-striped">
             <tbody>
-              <th colspan="2">Système</th>
+              <th colspan="2">{{ 'OS' | translate }}</th>
               <tr>
-                <td style="vertical-align: middle">Os</td>
+                <td style="vertical-align: middle">{{ 'TYPE_OS' | translate }}</td>
                 <td style="vertical-align: middle">{{vm.system.os}}</td>
               </tr>
               <tr>
-                <td style="vertical-align: middle">Release</td>
+                <td style="vertical-align: middle">{{ 'RELEASE_OS' | translate }}</td>
                 <td style="vertical-align: middle">{{vm.system.release}}</td>
               </tr>
-              <th colspan="2">Réseau</th>
+              <th colspan="2">{{ 'NETWORK' | translate }}</th>
               <tr>
-                <td style="vertical-align: middle">hostname</td>
+                <td style="vertical-align: middle">{{ 'HOSTNAME' | translate }}</td>
                 <td style="vertical-align: middle">{{vm.network.hostname}}</td>
               </tr>
-              <tr colspan="2">
-                <td style="vertical-align: middle">IP locale</td>
-              <tr ng-repeat="face in vm.network.iplocal">
-                <td>
-                    &emsp;{{face.name}}
+              <tr>
+                <td colspan="2" style="vertical-align: middle">{{ 'LOCAL_IP' | translate }}</td>
+              </tr>
+              <tr ng-repeat="face in vm.network.ipLocal">
+                <td style="padding-left:2em">
+                  {{face.name}}
                 </td>
                 <td>
                   {{face.address}}
                 </td>
               <tr>
-                <td style="vertical-align: middle">IP externe</td>
+                <td style="vertical-align: middle">{{ 'EXTERNAL_IP' | translate }}</td>
                 <td style="vertical-align: middle">{{vm.network.ipExterne}}</td>
-              </tr>
-              <th colspan="2">Répartition mémoire</th>
-              <tr>
-                <td style="vertical-align: middle">Mémoire CPU</td>
-                <td style="vertical-align: middle">{{vm.memory.cpu}}</td>
-              </tr>
-              <tr>
-                <td style="vertical-align: middle">Mémoire GPU</td>
-                <td style="vertical-align: middle">{{vm.memory.gpu}}</td>
               </tr>
             </tbody>
           </table>

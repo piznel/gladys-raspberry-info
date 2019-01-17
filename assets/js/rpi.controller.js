@@ -12,6 +12,7 @@
     var vm = this;
     vm.remoteIsBusy = false;
     vm.ready = false;
+    vm.stat = '';
     vm.core = '';
     vm.model = '';
     vm.system = '';
@@ -25,25 +26,53 @@
 
     function activate() {
       vm.remoteIsBusy = true;
-      return rpiService.infoCore()
+      return rpiService.statistic()
         .then(function(data) {
-          vm.core = data.data
+          if (data.status == 200) {
+            vm.stat = data.data
+          } else {
+            rpiService.errorNotificationTranslated('ERROR')
+          }
+          return rpiService.infoCore()
+        })
+        .then(function(data) {
+          if (data.status == 200) {
+            vm.core = data.data
+          } else {
+            rpiService.errorNotificationTranslated('ERROR')
+          }
           return rpiService.infoModel()
         })
         .then(function(data) {
-          vm.model = data.data
+          if (data.status == 200) {
+            vm.model = data.data
+          } else {
+            rpiService.errorNotificationTranslated('ERROR')
+          }
           return rpiService.infoSystem()
         })
         .then(function(data) {
-          vm.system = data.data
+          if (data.status == 200) {
+            vm.system = data.data
+          } else {
+            rpiService.errorNotificationTranslated('ERROR')
+          }
           return rpiService.infoNetwork()
         })
         .then(function(data) {
-          vm.network = data.data
+          if (data.status == 200) {
+            vm.network = data.data
+          } else {
+            rpiService.errorNotificationTranslated('ERROR')
+          }
           return rpiService.infoMemory()
         })
         .then(function(data) {
-          vm.memory = data.data
+          if (data.status == 200) {
+            vm.memory = data.data
+          } else {
+            rpiService.errorNotificationTranslated('ERROR')
+          }
           vm.ready = true;
           vm.remoteIsBusy = false;
           return
@@ -54,8 +83,10 @@
     }
 
     function refresh() {
-      
+      rpiService.statistic()
+        .then(function(data) {
+          vm.stat = data.data
+        })
     }
-
   }
 })();
