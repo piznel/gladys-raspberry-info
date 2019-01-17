@@ -1,65 +1,65 @@
 (function() {
-    'use strict';
-  
-    angular
-      .module('gladys')
-      .factory('rpiService', rpiService);
-  
-      rpiService.$inject = ['$http', 'Notification', '$translate'];
-  
-    function rpiService($http, Notification, $translate) {
-  
-      var service = {
-        infoCore: infoCore,
-        infoModel: infoModel,
-        infoSystem: infoSystem,
-        infoNetwork: infoNetwork,
-        infoMemory: infoMemory,
-        statistic: statistic,
-        successNotificationTranslated: successNotificationTranslated,
-        errorNotificationTranslated: errorNotificationTranslated
-      };
-  
-      return service;
-  
-      function infoCore() {
-        return $http({ method: 'GET', url: '/rpi/core/' });
-      }
+  'use strict';
 
-      function infoModel() {
-        return $http({ method: 'GET', url: '/rpi/model/' });
-      }
+  angular
+    .module('gladys')
+    .factory('rpiService', rpiService);
 
-      function infoSystem() {
-        return $http({ method: 'GET', url: '/rpi/system/' });
-      }
+    rpiService.$inject = ['$http', 'Notification', '$translate'];
 
-      function infoNetwork() {
-        return $http({ method: 'GET', url: '/rpi/network/' });
-      }
+  function rpiService($http, Notification, $translate) {
 
-      function infoMemory() {
-        return $http({ method: 'GET', url: '/rpi/memory/' });
-      }
+    var service = {
+      infoCore: infoCore,
+      infoModel: infoModel,
+      infoSystem: infoSystem,
+      infoNetwork: infoNetwork,
+      infoMemory: infoMemory,
+      stat: stat,
+      successNotificationTranslated: successNotificationTranslated,
+      errorNotificationTranslated: errorNotificationTranslated
+    };
 
-      function statistic() {
-        return $http({ method: 'GET', url: '/rpi/statistic/' });
-      }
+    return service;
 
-      function successNotificationTranslated(key, complement) {
-        return $translate(key)
-          .then(function(text) {
-            if (complement) text += complement;
-            Notification.success(text);
-          });
-      }
-  
-      function errorNotificationTranslated(key, complement) {
-        return $translate(key)
-          .then(function(text) {
-            if (complement) text += complement;
-            Notification.error(text);
-          });
-      }
+    function infoCore() {
+      return $http({ method: 'GET', url: '/rpi/core/' });
     }
-  })();
+
+    function infoModel() {
+      return $http({ method: 'GET', url: '/rpi/model/' });
+    }
+
+    function infoSystem() {
+      return $http({ method: 'GET', url: '/rpi/system/' });
+    }
+
+    function infoNetwork() {
+      return $http({ method: 'GET', url: '/rpi/network/' });
+    }
+
+    function infoMemory() {
+      return $http({ method: 'GET', url: '/rpi/memory/' });
+    }
+
+    function stat() {
+      return $http({ method: 'GET', url: '/rpi/stat/' });
+    }
+
+    function successNotificationTranslated(key, complement) {
+      return $translate(key)
+        .then(function(text) {
+          if (complement) text += complement;
+          Notification.success(text);
+        });
+    }
+
+    function errorNotificationTranslated(key, complement) {
+      return $translate(key)
+        .then(function(text) {
+          if (complement) text += complement;
+          Notification.error(text);
+        });
+    }
+  }
+})();

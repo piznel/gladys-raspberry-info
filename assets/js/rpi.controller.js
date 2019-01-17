@@ -26,7 +26,7 @@
 
     function activate() {
       vm.remoteIsBusy = true;
-      return rpiService.statistic()
+      return rpiService.stat()
         .then(function(data) {
           if (data.status == 200) {
             vm.stat = data.data
