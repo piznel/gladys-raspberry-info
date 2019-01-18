@@ -4,7 +4,7 @@ A module that turns possible getting information from Raspberry, such as GPU/CPU
 
 1. Add this module to Gladys:
 
-   * Name: Gladys-Alexa
+   * Name: Gladys-Raspberry
    * Version: 0.1.0
    * URL: https://github.com/piznel/Gladys-Raspberry-Info.git
    * Slug = rpi-info
