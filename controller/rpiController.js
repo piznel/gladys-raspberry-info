@@ -1,5 +1,5 @@
 const shared = require('../lib/rpi.shared.js');
-const command = require('../lib/rpi-send.js');
+const command = require('../lib/rpi.send.js');
 const stat = require('../lib/rpi.stat.js');
 
 module.exports = {

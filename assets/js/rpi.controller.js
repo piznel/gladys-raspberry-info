@@ -1,5 +1,3 @@
-import { chmod } from "fs";
-
 (function() {
   'use strict';
 
@@ -20,7 +18,7 @@ import { chmod } from "fs";
     vm.system = '';
     vm.network = '';
     vm.memory = '';
-    chmod.commandBash = '';
+    vm.commandBash = '';
 
     vm.refresh = refresh;
     vm.sendCommand = sendCommand;
@@ -94,8 +92,8 @@ import { chmod } from "fs";
     }
 
     function statNetwork(stat) {
-      let net = stat.net;
-      let tempNet = {};
+      var net = stat.net;
+      var tempNet = {};
       for (var face in net) {
         if (parseInt(net[face].received) > 0 || parseInt(net[face].transmit) > 0) {
           tempNet[face] = net[face]
@@ -113,8 +111,10 @@ import { chmod } from "fs";
     }
 
     function sendCommand(cmd) {
+      console.log(cmd)
       return rpiService.sendCommand(cmd)
       .then(function(answer) {
+        console.log(answer)
         vm.returnCommand = vm.returnCommand + cmd + '\n' + JSON.stringify(answer, null, 4) + '\n'
       })
 
