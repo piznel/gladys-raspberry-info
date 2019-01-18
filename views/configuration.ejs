@@ -32,7 +32,7 @@
               <div class="tab-pane active" id="tab_1-1">
 
                 <div class="box-body table-responsive">
-                  <table class="table table-striped">
+                  <table class="table table-condensed">
                     <tbody>
                       <th colspan="2">{{ 'MODEL_RASPBERRY' | translate }}</th>
                       <tr>
@@ -99,10 +99,12 @@
                     </tbody>
                   </table>
                 </div>
+                <div><h4>{{ 'UPTIME' | translate }}</h4></div>
+                <div>{{vm.stat.uptime.total}}</div>
               </div>
               <div class="tab-pane" id="tab_2-2">
                 <div class="box-body table-responsive">
-                  <table class="table table-striped">
+                  <table class="table table-condensed">
                     <tbody>
                       <th colspan="2">{{ 'OS' | translate }}</th>
                       <tr>
@@ -188,7 +190,7 @@
                   <td style="vertical-align: middle">{{vm.stat.memory.Cached}}</td>
                 </tr>
                 <tr>
-                  <td style="vertical-align: middle">{{ 'MEMORY_AVAILABLE' | translate }}</td>
+                  <td style="vertical-align: middle;padding-left:2em">{{ 'MEMORY_AVAILABLE' | translate }}</td>
                   <td style="vertical-align: middle">{{vm.stat.memory.MemAvailable}}</td>
                 </tr>
                 <th colspan="2">{{ 'MEMORY_SWAP' | translate }}</th>
@@ -253,6 +255,45 @@
             </table>
           </div>
         </div>
+
+        <div class="box box-solid" ng-show="vm.stat.wifi">
+            <h4 style="background-color:#f7f7f7; text-align: center; padding: 7px 10px; margin-top: 0;">
+              {{ 'STATISTICS_WIFI' | translate }}
+            </h4>
+            <div class="box-body table-responsive">
+              <table class="table table-condensed">
+                <tbody ng-repeat="face in vm.stat.wifi">
+                  <th colspan="2">{{face.interface}}</th>
+                  <tr>
+                    <td style="vertical-align: middle;padding-left:2em">{{ 'WIFI_FREQUENCY' | translate }}</td>
+                    <td style="vertical-align: middle">{{face.frequency}} GHz</td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align: middle;padding-left:2em">{{ 'WIFI_SSID' | translate }}</td>
+                    <td style="vertical-align: middle">{{face.ssid}}</td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align: middle;padding-left:2em">{{ 'WIFI_IEEE' | translate }}</td>
+                    <td style="vertical-align: middle">{{face.ieee}}</td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align: middle;padding-left:2em">{{ 'WIFI_QUALITY' | translate }}</td>
+                    <td style="vertical-align: middle">{{face.quality}}</td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align: middle;padding-left:2em">{{ 'WIFI_SIGNAL' | translate }}</td>
+                    <td style="vertical-align: middle">{{face.signal}} dBm</td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align: middle;padding-left:2em">{{ 'WIFI_BITRATE' | translate }}</td>
+                    <td style="vertical-align: middle">{{face.bitrate}} MB/s</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+
       </div>
       <!-- End Statistics Network-->
 
