@@ -1,5 +1,5 @@
 const shared = require('../lib/rpi.shared.js');
-const command = require('../lib/rpi.send.js');
+const sendCommand = require('../lib/rpi.send.js');
 const stat = require('../lib/rpi.stat.js');
 
 module.exports = {
@@ -33,9 +33,9 @@ module.exports = {
   },
 
   sendCommand: function(req, res, next) {
-    command(req.body)
+    sendCommand(req.body.cmd)
       .then((result) => {
-        return res.json(result)
+        return res.send(result)
       })
     .catch(next);
   }

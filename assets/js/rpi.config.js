@@ -59,7 +59,8 @@ var translationsEN = {
   WIFI_QUALITY: "Signal quality",
   WIFI_SIGNAL: "signal power",
   WIFI_BITRATE: "Data rate",
-  BASH_COMMAND: "Bash command"
+  BASH_COMMAND: "Bash command",
+  CLEAR: "Clear"
 };
 
 var translationsFR = {
@@ -123,7 +124,8 @@ var translationsFR = {
   WIFI_QUALITY: "Qualité du signal",
   WIFI_SIGNAL: "Puissance du signal",
   WIFI_BITRATE: "Débit",
-  BASH_COMMAND: "Commande bash"
+  BASH_COMMAND: "Commande bash",
+  CLEAR: "Effacer"
 };
 
 angular

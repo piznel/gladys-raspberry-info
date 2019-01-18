@@ -111,12 +111,16 @@
     }
 
     function sendCommand(cmd) {
-      console.log(cmd)
-      return rpiService.sendCommand(cmd)
-      .then(function(answer) {
-        console.log(answer)
-        vm.returnCommand = vm.returnCommand + cmd + '\n' + JSON.stringify(answer, null, 4) + '\n'
-      })
+      return rpiService.sendCommand({ cmd: cmd })
+        .then(function(data) {
+          if (data.status == 200) {
+            var answer = data.data;
+            if (typeof answer === 'object') {
+              answer = JSON.stringify(answer)
+            }
+            vm.returnCommand = vm.returnCommand + cmd + ' :\n' + answer + '\n'
+          }
+        })
 
     }
   }

@@ -302,14 +302,13 @@
             </table>
           </div>
         </div>
-
-
       </div>
       <!-- End Statistics Network-->
-
     </div>
   </div>
   <!-- row -->
+
+
   <div class="modal fade rpi-command" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -319,17 +318,19 @@
           </button>
           <h4 class="modal-title">{{ 'BASH_COMMAND' | translate }}</h4>
         </div>
-
         <div class="modal-body">
           <div class="form-group">
             <div class="input-group input-group-sm">
               <input type="text" class="form-control" id="textCommand" ng-model="vm.commandToSend">
               <span class="input-group-btn">
-                <button type="button" class="btn btn-info btn-flat" ng-click="vm.sendCommand(vm.commandToSend)">{{ 'EXECUTE' | translate }}</button>
+                <button type="button" class="btn btn-info btn-flat" ng-click="vm.sendCommand(vm.commandToSend);vm.commandToSend=''">{{ 'EXECUTE' | translate }}</button>
               </span>
             </div>
           </div>
           <pre style="height:370px"><code id="returnCommand">{{vm.returnCommand}}</code></pre>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" ng-click="vm.returnCommand=''">{{ 'CLEAR' | translate }}</button>
         </div>
       </div>
     </div>
