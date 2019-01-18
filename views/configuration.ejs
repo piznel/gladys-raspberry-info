@@ -26,7 +26,7 @@
               <li class="active"><a href="#tab_1-1" data-toggle="tab" aria-expanded="true">{{ 'MATERIEL' | translate }}</a></li>
               <li><a href="#tab_2-2" data-toggle="tab" aria-expanded="false">{{ 'SYSTEME' | translate }}</a></li>
               <li class="pull-right"><a href="" onmouseover="this.style.color='#000000'" onmouseout="this.style.color='';" class="text-muted" data-toggle="tooltip" data-original-title="{{ 'REFRESH' | translate }}">
-                <i class="fa fa-refresh" ng-click="vm.refresh()"></i></a></li>
+                  <i class="fa fa-refresh" ng-click="vm.refresh()"></i></a></li>
             </ul>
             <div class="tab-content">
               <div class="tab-pane active" id="tab_1-1">
@@ -99,8 +99,14 @@
                     </tbody>
                   </table>
                 </div>
-                <div><h4>{{ 'UPTIME' | translate }}</h4></div>
+                <div>
+                  <h4>{{ 'UPTIME' | translate }}</h4>
+                </div>
                 <div>{{vm.stat.uptime.total}}</div>
+                <div>
+                  <h4>{{ 'RASPBERRY_TIME' | translate }}</h4>
+                </div>
+                <div>{{vm.stat.uptime.gdh}}</div>
               </div>
               <div class="tab-pane" id="tab_2-2">
                 <div class="box-body table-responsive">
@@ -137,6 +143,10 @@
                       </tr>
                     </tbody>
                   </table>
+                </div>
+                <div class="box-footer">
+                  <button class="btn btn-flat btn-primary" data-toggle="modal" data-target=".rpi-command">
+                    <i class="fa fa-file-text"></i> {{ 'BASH_COMMAND' | translate }}</button>
                 </div>
               </div>
             </div>
@@ -257,41 +267,41 @@
         </div>
 
         <div class="box box-solid" ng-show="vm.stat.wifi">
-            <h4 style="background-color:#f7f7f7; text-align: center; padding: 7px 10px; margin-top: 0;">
-              {{ 'STATISTICS_WIFI' | translate }}
-            </h4>
-            <div class="box-body table-responsive">
-              <table class="table table-condensed">
-                <tbody ng-repeat="face in vm.stat.wifi">
-                  <th colspan="2">{{face.interface}}</th>
-                  <tr>
-                    <td style="vertical-align: middle;padding-left:2em">{{ 'WIFI_FREQUENCY' | translate }}</td>
-                    <td style="vertical-align: middle">{{face.frequency}} GHz</td>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align: middle;padding-left:2em">{{ 'WIFI_SSID' | translate }}</td>
-                    <td style="vertical-align: middle">{{face.ssid}}</td>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align: middle;padding-left:2em">{{ 'WIFI_IEEE' | translate }}</td>
-                    <td style="vertical-align: middle">{{face.ieee}}</td>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align: middle;padding-left:2em">{{ 'WIFI_QUALITY' | translate }}</td>
-                    <td style="vertical-align: middle">{{face.quality}}</td>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align: middle;padding-left:2em">{{ 'WIFI_SIGNAL' | translate }}</td>
-                    <td style="vertical-align: middle">{{face.signal}} dBm</td>
-                  </tr>
-                  <tr>
-                    <td style="vertical-align: middle;padding-left:2em">{{ 'WIFI_BITRATE' | translate }}</td>
-                    <td style="vertical-align: middle">{{face.bitrate}} MB/s</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+          <h4 style="background-color:#f7f7f7; text-align: center; padding: 7px 10px; margin-top: 0;">
+            {{ 'STATISTICS_WIFI' | translate }}
+          </h4>
+          <div class="box-body table-responsive">
+            <table class="table table-condensed">
+              <tbody ng-repeat="face in vm.stat.wifi">
+                <th colspan="2">{{face.interface}}</th>
+                <tr>
+                  <td style="vertical-align: middle;padding-left:2em">{{ 'WIFI_FREQUENCY' | translate }}</td>
+                  <td style="vertical-align: middle">{{face.frequency}} GHz</td>
+                </tr>
+                <tr>
+                  <td style="vertical-align: middle;padding-left:2em">{{ 'WIFI_SSID' | translate }}</td>
+                  <td style="vertical-align: middle">{{face.ssid}}</td>
+                </tr>
+                <tr>
+                  <td style="vertical-align: middle;padding-left:2em">{{ 'WIFI_IEEE' | translate }}</td>
+                  <td style="vertical-align: middle">{{face.ieee}}</td>
+                </tr>
+                <tr>
+                  <td style="vertical-align: middle;padding-left:2em">{{ 'WIFI_QUALITY' | translate }}</td>
+                  <td style="vertical-align: middle">{{face.quality}}</td>
+                </tr>
+                <tr>
+                  <td style="vertical-align: middle;padding-left:2em">{{ 'WIFI_SIGNAL' | translate }}</td>
+                  <td style="vertical-align: middle">{{face.signal}} dBm</td>
+                </tr>
+                <tr>
+                  <td style="vertical-align: middle;padding-left:2em">{{ 'WIFI_BITRATE' | translate }}</td>
+                  <td style="vertical-align: middle">{{face.bitrate}} MB/s</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
+        </div>
 
 
       </div>
@@ -300,20 +310,26 @@
     </div>
   </div>
   <!-- row -->
-  <div class="modal fade alexa-help" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
+  <div class="modal fade rpi-command" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <div class="modal-body">
-          <div>
-            {{ 'ALEXA_TEXT_1' | translate }}<br />
-            {{ 'ALEXA_TEXT_2' | translate }}<br />
-            {{ 'ALEXA_TEXT_3' | translate }}<br />
-            {{ 'ALEXA_TEXT_4' | translate }}<br />
-            {{ 'ALEXA_TEXT_5' | translate }}
-          </div>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title">{{ 'BASH_COMMAND' | translate }}</h4>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary btn-flat" data-dismiss="modal">OK</button>
+
+        <div class="modal-body">
+          <div class="form-group">
+            <div class="input-group input-group-sm">
+              <input type="text" class="form-control" id="textCommand" ng-model="vm.commandToSend">
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-info btn-flat" ng-click="vm.sendCommand(vm.commandToSend)">{{ 'EXECUTE' | translate }}</button>
+              </span>
+            </div>
+          </div>
+          <pre style="height:370px"><code id="returnCommand">{{vm.returnCommand}}</code></pre>
         </div>
       </div>
     </div>

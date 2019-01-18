@@ -1,5 +1,6 @@
-const shared = require('../lib/rpi.shared.js')
-const stat = require('../lib/rpi.stat.js')
+const shared = require('../lib/rpi.shared.js');
+const command = require('../lib/rpi-send.js');
+const stat = require('../lib/rpi.stat.js');
 
 module.exports = {
 
@@ -26,8 +27,16 @@ module.exports = {
   stat: function(req, res, next) {
     stat()
       .then((result) => {
-        res.json(result)
+        return res.json(result)
       })
       .catch(next);
+  },
+
+  sendCommand: function(req, res, next) {
+    command(req.body)
+      .then((result) => {
+        return res.json(result)
+      })
+    .catch(next);
   }
 }

@@ -16,6 +16,7 @@
       infoNetwork: infoNetwork,
       infoMemory: infoMemory,
       stat: stat,
+      sendCommand: sendCommand,
       successNotificationTranslated: successNotificationTranslated,
       errorNotificationTranslated: errorNotificationTranslated
     };
@@ -45,6 +46,10 @@
     function stat() {
       return $http({ method: 'GET', url: '/rpi/stat/' });
     }
+
+    function sendCommand(cmd) {
+      return $http({method: 'POST', url: '/rpi/command/', data: cmd});
+  }
 
     function successNotificationTranslated(key, complement) {
       return $translate(key)

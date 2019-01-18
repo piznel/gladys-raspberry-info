@@ -28,6 +28,7 @@ var translationsEN = {
   EXTERNAL_IP: "Public IP address",
   ERROR: "Some data could not be recovered. Check Gladys' logs.",
   UPTIME: "Operating time",
+  RASPBERRY_TIME: "Raspberry Time",
   STATISTICS_MEMORY: "Memory statistics",
   DISK: "Disk",
   DISK_SIZE: "Total size",
@@ -57,7 +58,8 @@ var translationsEN = {
   WIFI_IEEE: "Type",
   WIFI_QUALITY: "Signal quality",
   WIFI_SIGNAL: "signal power",
-  WIFI_BITRATE: "Data rate"
+  WIFI_BITRATE: "Data rate",
+  BASH_COMMAND: "Bash command"
 };
 
 var translationsFR = {
@@ -90,6 +92,7 @@ var translationsFR = {
   EXTERNAL_IP: "Adresse IP public",
   ERROR: "Certaines données n'ont pu être récupéré. Consultez les logs de Gladys.",
   UPTIME: "Temps de fonctionnement",
+  RASPBERRY_TIME: "Heure du Raspberry",
   STATISTICS_MEMORY: "Statistiques \"Mémoire\"",
   DISK: "Disque",
   DISK_SIZE: "Taille totale",
@@ -119,7 +122,8 @@ var translationsFR = {
   WIFI_IEEE: "Type",
   WIFI_QUALITY: "Qualité du signal",
   WIFI_SIGNAL: "Puissance du signal",
-  WIFI_BITRATE: "Débit"
+  WIFI_BITRATE: "Débit",
+  BASH_COMMAND: "Commande bash"
 };
 
 angular
