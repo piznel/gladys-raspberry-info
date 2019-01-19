@@ -145,7 +145,7 @@
                   </table>
                 </div>
                 <div class="box-footer">
-                  <button class="btn btn-flat btn-primary" data-toggle="modal" data-target=".rpi-command">
+                  <button class="btn btn-flat btn-primary" data-toggle="modal" data-target=".rpi-command" ng-click="vm.returnCommand=''">
                     <i class="fa fa-file-text"></i> {{ 'BASH_COMMAND' | translate }}</button>
                 </div>
               </div>
@@ -320,14 +320,36 @@
         </div>
         <div class="modal-body">
           <div class="form-group">
+            <div class="alert alert-danger alert-dismissible">
+              {{ 'TEXT_1_COMMAND' | translate }}<br />
+              {{ 'TEXT_2_COMMAND' | translate }}<br />
+              {{ 'TEXT_3_COMMAND' | translate }}
+            </div>
+            <label>{{ 'COMMAND_TO_SEND' | translate }}</label>
             <div class="input-group input-group-sm">
+              
               <input type="text" class="form-control" id="textCommand" ng-model="vm.commandToSend">
               <span class="input-group-btn">
                 <button type="button" class="btn btn-info btn-flat" ng-click="vm.sendCommand(vm.commandToSend);vm.commandToSend=''">{{ 'EXECUTE' | translate }}</button>
               </span>
             </div>
           </div>
-          <pre style="height:370px"><code id="returnCommand">{{vm.returnCommand}}</code></pre>
+          <label>{{ 'COMMAND_ANSWER' | translate }}</label>
+          <div style="position:relative">
+            <div ng-show="!vm.readyCommand" style="position:absolute; width:100%" class="container-fluid">
+              <div class="row">
+                <div class="col-centered">
+                  <div class="spinner-box">
+                    <div class="spinner">
+                      <div class="double-bounce1"></div>
+                      <div class="double-bounce2"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <pre style="height:370px"><code id="returnCommand">{{vm.returnCommand}}</code></pre>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default pull-left" ng-click="vm.returnCommand=''">{{ 'CLEAR' | translate }}</button>

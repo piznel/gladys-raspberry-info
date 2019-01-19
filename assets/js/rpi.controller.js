@@ -19,6 +19,7 @@
     vm.network = '';
     vm.memory = '';
     vm.commandBash = '';
+    vm.readyCommand = true;
 
     vm.refresh = refresh;
     vm.sendCommand = sendCommand;
@@ -111,6 +112,7 @@
     }
 
     function sendCommand(cmd) {
+      vm.readyCommand = false;
       return rpiService.sendCommand({ cmd: cmd })
         .then(function(data) {
           if (data.status == 200) {
@@ -119,6 +121,7 @@
               answer = JSON.stringify(answer)
             }
             vm.returnCommand = vm.returnCommand + cmd + ' :\n' + answer + '\n'
+            vm.readyCommand = true;
           }
         })
 

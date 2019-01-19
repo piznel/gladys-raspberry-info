@@ -59,6 +59,11 @@ var translationsEN = {
   WIFI_QUALITY: "Signal quality",
   WIFI_SIGNAL: "signal power",
   WIFI_BITRATE: "Data rate",
+  TEXT_1_COMMAND: "Any commands entered in this window will be sent to your Raspberry console.",
+  TEXT_2_COMMAND: "The result will be displayed after its execution.",
+  TEXT_3_COMMAND: "Do not use this feature if you do not know exactly what you are doing.",
+  COMMAND_TO_SEND: "Command to send:",
+  COMMAND_ANSWER: "Results:",
   BASH_COMMAND: "Bash command",
   CLEAR: "Clear"
 };
@@ -124,6 +129,11 @@ var translationsFR = {
   WIFI_QUALITY: "Qualité du signal",
   WIFI_SIGNAL: "Puissance du signal",
   WIFI_BITRATE: "Débit",
+  TEXT_1_COMMAND: "Toute commande saisie dans cette fenêtre sera envoyée à la console de votre Raspberry.",
+  TEXT_2_COMMAND: "Le résultat sera affiché après son exécution.",
+  TEXT_3_COMMAND: "Ne pas utiliser cette fonctionnalité si vous ne savez pas exactement ce que vous faites.",
+  COMMAND_TO_SEND: "Commande à envoyer :",
+  COMMAND_ANSWER: "Résultat :",
   BASH_COMMAND: "Commande bash",
   CLEAR: "Effacer"
 };
