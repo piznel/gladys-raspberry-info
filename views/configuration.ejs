@@ -5,7 +5,7 @@
 <div data-ng-controller="rpiCtrl as vm">
   <div class="container-fluid">
     <div class="row" ng-show="!vm.ready">
-      <div class="col-centered col-md-6 col-md-offset-6">
+      <div class="col-centered">
         <div class="spinner-box">
           <div class="spinner">
             <div class="double-bounce1"></div>
@@ -98,6 +98,10 @@
                       </tr>
                     </tbody>
                   </table>
+                </div>
+                <div class="box-footer">
+                  <button class="btn btn-flat btn-primary" data-toggle="modal" data-target=".rpi-usb-device">
+                    {{ 'DEVICE_USB_LIST' | translate }}</button>
                 </div>
                 <div>
                   <h4>{{ 'UPTIME' | translate }}</h4>
@@ -308,7 +312,7 @@
   </div>
   <!-- row -->
 
-
+  <!--Command bash modal-->
   <div class="modal fade rpi-command" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -327,7 +331,7 @@
             </div>
             <label>{{ 'COMMAND_TO_SEND' | translate }}</label>
             <div class="input-group input-group-sm">
-              
+
               <input type="text" class="form-control" id="textCommand" ng-model="vm.commandToSend">
               <span class="input-group-btn">
                 <button type="button" class="btn btn-info btn-flat" ng-click="vm.sendCommand(vm.commandToSend);vm.commandToSend=''">{{ 'EXECUTE' | translate }}</button>
@@ -357,4 +361,59 @@
       </div>
     </div>
   </div>
+  <!--End command bash modal-->
+
+  <!--USB devices list-->
+  <div class="modal fade rpi-usb-device" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title">{{ 'DEVICE_USB_LIST' | translate }}</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-centered col-md-6 align-self-start" ng-repeat="device in vm.stat.usb">
+              <div class="box box-solid">
+                <div class="box-body table-responsive">
+                  <table class="table table-condensed">
+                    <tbody>
+                      <tr>
+                        <th colspan="2">
+                          {{ 'DEVICE_PORT_NAME' | translate }} : {{device.devname}}
+                        </th>
+                      </tr>
+                      <tr ng-show="device.devtype">
+                        <td style="vertical-align: middle">{{ 'DEVICE_TYPE' | translate }}</td>
+                        <td style="vertical-align: middle">{{device.devtype}}</td>
+                      </tr>
+                      <tr ng-show="device.class">
+                        <td style="vertical-align: middle">{{ 'DEVICE_CLASS' | translate }}</td>
+                        <td style="vertical-align: middle">{{device.class}}</td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align: middle">{{ 'DEVICE_SERIAL' | translate }}</td>
+                        <td style="vertical-align: middle"><span>{{device.serial_short ? device.serial_short : device.serial}}</span></td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align: middle">{{ 'DEVICE_MODEL' | translate }}</td>
+                        <td style="vertical-align: middle"><span>{{device.model ? device.model : device.model_enc}}</span></td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align: middle">{{ 'DEVICE_VENDOR' | translate }}</td>
+                        <td style="vertical-align: middle"><span>{{device.vendor_from_db ? device.vendor_from_db : device.vendor}}</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--End USB devices list-->
 </div>

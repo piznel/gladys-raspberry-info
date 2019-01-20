@@ -65,7 +65,14 @@ var translationsEN = {
   COMMAND_TO_SEND: "Command to send:",
   COMMAND_ANSWER: "Results:",
   BASH_COMMAND: "Bash command",
-  CLEAR: "Clear"
+  CLEAR: "Clear",
+  DEVICE_USB_LIST: "USB devices",
+  DEVICE_PORT_NAME: "Port",
+  DEVICE_TYPE: "Type",
+  DEVICE_CLASS: "Class",
+  DEVICE_SERIAL: "Serial",
+  DEVICE_MODEL: "Model",
+  DEVICE_VENDOR: "Vendor"
 };
 
 var translationsFR = {
@@ -135,7 +142,14 @@ var translationsFR = {
   COMMAND_TO_SEND: "Commande à envoyer :",
   COMMAND_ANSWER: "Résultat :",
   BASH_COMMAND: "Commande bash",
-  CLEAR: "Effacer"
+  CLEAR: "Effacer",
+  DEVICE_USB_LIST: "Périphériques USB",
+  DEVICE_PORT_NAME: "Port",
+  DEVICE_TYPE: "Type",
+  DEVICE_CLASS: "Classe",
+  DEVICE_SERIAL: "N° série",
+  DEVICE_MODEL: "Modèle",
+  DEVICE_VENDOR: "Fabricant"
 };
 
 angular
