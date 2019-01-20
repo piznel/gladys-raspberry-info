@@ -72,7 +72,15 @@ var translationsEN = {
   DEVICE_CLASS: "Class",
   DEVICE_SERIAL: "Serial",
   DEVICE_MODEL: "Model",
-  DEVICE_VENDOR: "Vendor"
+  DEVICE_VENDOR: "Vendor",
+  SECURITY: "Security",
+  ACTIVE_CONNEXION: "Active connexion",
+  IP_LOCAL: "local IP",
+  PEER_IP: "Peer IP",
+  LAST_CONNEXION: "Last connections",
+  USER_NAME: "User",
+  FROM_IP: "from (ip:port)",
+  STATUS_CONNEXION: "Status"
 };
 
 var translationsFR = {
@@ -149,7 +157,15 @@ var translationsFR = {
   DEVICE_CLASS: "Classe",
   DEVICE_SERIAL: "N° série",
   DEVICE_MODEL: "Modèle",
-  DEVICE_VENDOR: "Fabricant"
+  DEVICE_VENDOR: "Fabricant",
+  SECURITY: "Sécurité",
+  ACTIVE_CONNEXION: "Connexions actives",
+  IP_LOCAL: "IP locale",
+  PEER_IP: "IP distante",
+  LAST_CONNEXION: "Dernières connexions",
+  USER_NAME: "Utilisateur",
+  FROM_IP: "depuis (IP:Port)",
+  STATUS_CONNEXION: "Status"
 };
 
 angular

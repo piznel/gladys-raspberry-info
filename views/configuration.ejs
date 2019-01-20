@@ -25,6 +25,7 @@
             <ul class="nav nav-tabs active">
               <li class="active"><a href="#tab_1-1" data-toggle="tab" aria-expanded="true">{{ 'MATERIEL' | translate }}</a></li>
               <li><a href="#tab_2-2" data-toggle="tab" aria-expanded="false">{{ 'SYSTEME' | translate }}</a></li>
+              <li><a href="#tab_3-3" data-toggle="tab" aria-expanded="false">{{ 'SECURITY' | translate }}</a></li>
               <li class="pull-right"><a href="" onmouseover="this.style.color='#000000'" onmouseout="this.style.color='';" class="text-muted" data-toggle="tooltip" data-original-title="{{ 'REFRESH' | translate }}">
                   <i class="fa fa-refresh" ng-click="vm.refresh()"></i></a></li>
             </ul>
@@ -153,6 +154,29 @@
                     <i class="fa fa-file-text"></i> {{ 'BASH_COMMAND' | translate }}</button>
                 </div>
               </div>
+              <div class="tab-pane active" id="tab_3-3">
+                  <div class="box-body table-responsive">
+                      <h4 style="background-color:#f7f7f7; text-align: center; padding: 7px 10px; margin-top: 0;">
+                          {{ 'ACTIVE_CONNEXION' | translate }}
+                        </h4>
+                    <table class="table table-condensed">
+                      <tbody>
+                        <tr>
+                            <th style="vertical-align: middle;text-align:center">{{ 'IP_LOCAL' | translate }}</th>
+                            <th style="vertical-align: middle;text-align:center">{{ 'PEER_IP' | translate }}</th>
+                          </tr>
+                        <tr ng-repeat="connexion in vm.stat.connexion">
+                          <td style="vertical-align: middle">{{connexion.local}}</td>
+                          <td style="vertical-align: middle">{{connexion.peer}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="box-footer">
+                    <button class="btn btn-flat btn-primary" data-toggle="modal" data-target=".rpi-last-connexion">
+                      {{ 'LAST_CONNEXION' | translate }}</button>
+                  </div>
+                </div>
             </div>
           </div>
         </div>
@@ -416,4 +440,50 @@
     </div>
   </div>
   <!--End USB devices list-->
+
+  <!--last connexion list-->
+  <div class="modal fade rpi-last-connexion" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title">{{ 'LAST_CONNEXION' | translate }}</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-centered align-self-start">
+                <div class="box box-solid">
+                  <div class="box-body table-responsive">
+                    <table class="table table-condensed">
+                      <tbody>
+                        <tr>
+                          <th style="text-align:center">
+                            {{ 'USER_NAME' | translate }}
+                          </th>
+                          <th style="text-align:center">
+                              {{ 'FROM_IP' | translate }}
+                          </th style="text-align:center">
+                          <th>
+                              {{ 'STATUS_CONNEXION' | translate }}
+                          </th>
+                        </tr>
+                        <tr ng-repeat="con in vm.stat.last">
+                          <td style="vertical-align: middle;text-align:center">{{con.user}}</td>
+                          <td style="vertical-align: middle;text-align:center">{{con.fromip}}</td>
+                          <td style="vertical-align: middle">{{con.info}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--End last connexion list-->
+
 </div>
