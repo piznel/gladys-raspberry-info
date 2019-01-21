@@ -1,0 +1,27 @@
+{
+  "name": "gladys-raspberry-info",
+  "version": "0.1.0",
+  "description": "getting information from Raspberry in Gladys",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/piznel/Gladys-Raspberry-Info.git"
+  },
+  "keywords": [
+    "gladys",
+    "raspberry",
+    "information"
+  ],
+  "author": "Piznel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/piznel/Gladys-Raspberry-Info/issues"
+  },
+  "homepage": "https://github.com/piznel/Gladys-Raspberry-Info#readme"
+}
