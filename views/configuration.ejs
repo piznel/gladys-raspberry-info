@@ -168,7 +168,10 @@
                       </tr>
                       <tr ng-repeat="connexion in vm.stat.connexion">
                         <td style="vertical-align: middle">{{connexion.local}}</td>
-                        <td style="vertical-align: middle">{{connexion.peer}}</td>
+                        <td style="vertical-align: middle">
+                          <span ng-show="!connexion.ext">{{connexion.peer}}</span>
+                          <span ng-show="connexion.ext"><a ng-href="{{connexion.link}}" class="text-red" target="blank" style="font-weight: 700">{{connexion.peer}}</a></span>
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -465,14 +468,17 @@
                         </th>
                         <th style="text-align:center">
                           {{ 'FROM_IP' | translate }}
-                        </th >
+                        </th>
                         <th style="text-align:center">
                           {{ 'STATUS_CONNEXION' | translate }}
                         </th>
                       </tr>
                       <tr ng-repeat="con in vm.stat.last">
                         <td style="vertical-align: middle;text-align:center">{{con.user}}</td>
-                        <td style="vertical-align: middle;text-align:center">{{con.fromip}}</td>
+                        <td style="vertical-align: middle;text-align:center">
+                          <span ng-show="!con.ext">{{con.fromip}}</span>
+                          <span ng-show="con.ext"><a ng-href="{{con.link}}" class="text-red" target="blank" style="font-weight: 700">{{con.fromip}}</a></span>
+                        </td>
                         <td style="vertical-align: middle">{{con.info}}</td>
                       </tr>
                     </tbody>
