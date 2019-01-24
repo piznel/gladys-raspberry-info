@@ -6,7 +6,7 @@ A module that turns possible getting information from Raspberry, such as GPU/CPU
 
    * Name: `Gladys-Raspberry`
    * Version: `0.1.0`
-   * URL: `https://github.com/piznel/Gladys-Raspberry-Info.git`
+   * URL: `https://github.com/piznel/gladys-raspberry-info.git`
    * Slug = `rpi-info`
 
 2. Restart Gladys.
