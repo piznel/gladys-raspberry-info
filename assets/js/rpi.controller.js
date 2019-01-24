@@ -45,8 +45,9 @@
       return rpiService.stat()
         .then(function(data) {
           if (data.status == 200) {
-            vm.stat = statNetwork(data.data)
-            vm.stat = statWifi(data.data)
+            vm.stat = data.data;
+            vm.stat.net = statNetwork(data.data.net)
+            vm.stat.wifi = statWifi(data.data.wifi)
           } else {
             rpiService.errorNotificationTranslated('ERROR')
           }
@@ -109,35 +110,33 @@
     }
 
     function statNetwork(stat) {
-      var net = stat.net;
       var tempNet = {};
-      for (var face in net) {
-        if (parseInt(net[face].received) > 0 || parseInt(net[face].transmit) > 0) {
-          tempNet[face] = net[face]
+      for (var face in stat) {
+        if (parseInt(stat[face].received) > 0 || parseInt(stat[face].transmit) > 0) {
+          tempNet[face] = stat[face]
         }
       }
-      stat.net = tempNet;
-      return stat;
+      return tempNet;
     }
 
     function statWifi(stat) {
-      var wifi = stat.wifi;
       var tempWifi = {};
-      for (var face in wifi) {
-        if (wifi[face].ssid && wifi[face].ssid.length) {
-          tempWifi[face] = wifi[face]
+      for (var face in stat) {
+        if (stat[face].ssid && stat[face].ssid.length) {
+          tempWifi[face] = stat[face]
           vm.showStatWifi = true
         }
       }
-      //console.log(tempWifi)
-      stat.wifi = tempWifi;
-      return stat;
+      return tempWifi;
     }
 
     function refresh() {
+      vm.remoteIsBusy = true;
       return rpiService.stat()
         .then(function(data) {
-          vm.stat = statNetwork(data.data)
+          vm.stat.net = statNetwork(data.data.net)
+          vm.stat.wifi = statWifi(data.data.wifi)
+          vm.remoteIsBusy = false;
         })
     }
 
