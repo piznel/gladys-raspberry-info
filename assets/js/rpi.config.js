@@ -16,6 +16,7 @@ var translationsEN = {
   TEMPERATURE: "Temperature",
   TEMPERATURE_CPU: "CPU",
   TEMPERATURE_GPU: "GPU",
+  USAGE_CPU: "Processor load",
   SERIAL_PROCESSOR: "Serial number",
   REVISION_PROCESSOR: "Revision number",
   SYSTEME: "Software",
@@ -80,7 +81,10 @@ var translationsEN = {
   LAST_CONNEXION: "Last connections",
   USER_NAME: "User",
   FROM_IP: "from (ip:port)",
-  STATUS_CONNEXION: "Status"
+  STATUS_CONNEXION: "Status",
+  DISK_DETAIL: "Detail",
+  FILE_SYSTEM: "File system",
+  FILE_MOUNT: "Mounted on"
 };
 
 var translationsFR = {
@@ -101,6 +105,7 @@ var translationsFR = {
   TEMPERATURE: "Température",
   TEMPERATURE_CPU: "CPU",
   TEMPERATURE_GPU: "GPU",
+  USAGE_CPU: "Charge",
   SERIAL_PROCESSOR: "N° de série",
   REVISION_PROCESSOR: "N° de révision",
   SYSTEME: "Logiciel",
@@ -165,7 +170,10 @@ var translationsFR = {
   LAST_CONNEXION: "Dernières connexions",
   USER_NAME: "Utilisateur",
   FROM_IP: "depuis (IP:Port)",
-  STATUS_CONNEXION: "Status"
+  STATUS_CONNEXION: "Status",
+  DISK_DETAIL: "Détail  ",
+  FILE_SYSTEM: "Sys. de fichier",
+  FILE_MOUNT: "Monté sur"
 };
 
 angular

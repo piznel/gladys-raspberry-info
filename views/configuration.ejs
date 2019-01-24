@@ -74,19 +74,23 @@
                       </tr>
                       <tr>
                         <td style="vertical-align: middle">{{ 'VOLTAGE_PROCESSOR' | translate }}</td>
-                        <td style="vertical-align: middle">{{vm.core.voltage}} V</td>
+                        <td style="vertical-align: middle"><span ng-class="vm.classVoltageColor(vm.core.voltage)" style="font-size:100%">{{vm.core.voltage}} V</span></td>
                       </tr>
                       <tr>
                         <td colspan="2" style="vertical-align: middle">{{ 'TEMPERATURE' | translate }}</td>
                       </tr>
                       <tr>
                         <td style="padding-left:2em">{{ 'TEMPERATURE_CPU' | translate }}</td>
-                        <td style="vertical-align: middle">{{vm.core.temp_cpu}} °C</td>
+                        <td style="vertical-align: middle"><span ng-class="vm.classTemperatureColor(vm.core.temp_cpu)" style="font-size:100%">{{vm.core.temp_cpu}} °C</span></td>
                       </tr>
                       <tr>
                       <tr>
                         <td style="padding-left:2em">{{ 'TEMPERATURE_GPU' | translate }}</td>
-                        <td style="vertical-align: middle">{{vm.core.temp_gpu}} °C</td>
+                        <td style="vertical-align: middle"><span ng-class="vm.classTemperatureColor(vm.core.temp_gpu)" style="font-size:100%">{{vm.core.temp_gpu}} °C</span></td>
+                      </tr>
+                      <tr>
+                        <td>{{ 'USAGE_CPU' | translate }}</td>
+                        <td style="vertical-align: middle"><span ng-class="vm.classUsageColor(vm.core.usage)" style="font-size:100%">{{vm.core.usage}} %</span></td>
                       </tr>
                       <tr>
                         <td style="vertical-align: middle">{{ 'SERIAL_PROCESSOR' | translate }}</td>
@@ -211,7 +215,9 @@
                 </tr>
                 <tr>
                   <td style="vertical-align: middle;padding-left:2em">{{ 'DISK_PERCENT' | translate }}</td>
-                  <td style="vertical-align: middle">{{vm.stat.disk.per_cent}}</td>
+                  <td style="vertical-align: middle" ng-class="vm.classPercentColor(vm.stat.disk.per_cent)">{{vm.stat.disk.per_cent}}
+                      <a href="" class="pull-right"  data-toggle="modal" data-target=".rpi-disk-detail"><i class="fa fa-ellipsis-h"></i></a>
+                  </td>
                 </tr>
 
                 <th colspan="2">{{ 'MEMORY_RAM' | translate }}</th>
@@ -298,7 +304,7 @@
           </div>
         </div>
 
-        <div class="box box-solid" ng-show="vm.stat.wifi">
+        <div class="box box-solid" ng-show="vm.showStatWifi">
           <h4 style="background-color:#f7f7f7; text-align: center; padding: 7px 10px; margin-top: 0;">
             {{ 'STATISTICS_WIFI' | translate }}
           </h4>
@@ -336,6 +342,18 @@
         </div>
       </div>
       <!-- End Statistics Network-->
+      <div ng-show="vm.remoteIsBusy" style="position:absolute; width:100%" tabindex="1000" class="container-fluid">
+          <div class="row">
+            <div class="col-centered">
+              <div class="spinner-box">
+                <div class="spinner">
+                  <div class="double-bounce1"></div>
+                  <div class="double-bounce2"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>  
     </div>
   </div>
   <!-- row -->
@@ -493,4 +511,60 @@
   </div>
   <!--End last connexion list-->
 
+    <!--disk detail list-->
+    <div class="modal fade rpi-disk-detail" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+              <h4 class="modal-title">{{ 'DISK_DETAIL' | translate }}</h4>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-centered align-self-start">
+                  <div class="box box-solid">
+                    <div class="box-body table-responsive">
+                      <table class="table table-condensed">
+                        <tbody>
+                          <tr>
+                            <th style="text-align:center">
+                              {{ 'FILE_SYSTEM' | translate }}
+                            </th>
+                            <th style="text-align:center">
+                              {{ 'DISK_SIZE' | translate }}
+                            </th>
+                            <th style="text-align:center">
+                              {{ 'DISK_USED' | translate }}
+                            </th>
+                            <th style="text-align:center">
+                              {{ 'DISK_FREE' | translate }}
+                            </th>
+                            <th style="text-align:center">
+                              {{ 'DISK_PERCENT' | translate }}
+                            </th>
+                            <th style="text-align:center">
+                              {{ 'FILE_MOUNT' | translate }}
+                            </th>
+                          </tr>
+                          <tr ng-repeat="file in vm.stat.diskDetail">
+                            <td style="vertical-align: middle;">{{file.file}}</td>
+                            <td style="vertical-align: middle;text-align:center">{{file.total}}</td>
+                            <td style="vertical-align: middle;text-align:center">{{file.used}}</td>
+                            <td style="vertical-align: middle;text-align:center">{{file.free}}</td>
+                            <td style="vertical-align: middle;text-align:center" ng-class="vm.classPercentColor(file.per_cent)">{{file.per_cent}}</td>
+                            <td style="vertical-align: middle">{{file.mount}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--End disk details list-->
 </div>

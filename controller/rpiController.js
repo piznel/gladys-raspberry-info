@@ -1,6 +1,7 @@
 const shared = require('../lib/rpi.shared.js');
 const sendCommand = require('../lib/rpi.send.js');
 const stat = require('../lib/rpi.stat.js');
+const getDeviceType = require('../lib/rpi.getDeviceType.js');
 
 module.exports = {
 
@@ -38,5 +39,13 @@ module.exports = {
         return res.send(result)
       })
     .catch(next);
+  },
+  
+  getDeviceType: function(req, res, next) {
+    getDeviceType()
+      .then((result) => {
+        return res.json(result)
+      })
+      .catch(next);
   }
 }

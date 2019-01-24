@@ -19,7 +19,8 @@ module.exports = function(sails) {
         'get /rpi/network': (req, res, next) => sails.hooks.policies.middleware.checktoken(req, res, next),
         'get /rpi/memory': (req, res, next) => sails.hooks.policies.middleware.checktoken(req, res, next),
         'get /rpi/stat': (req, res, next) => sails.hooks.policies.middleware.checktoken(req, res, next),
-        'post /rpi/command': (req, res, next) => sails.hooks.policies.middleware.checktoken(req, res, next)
+        'post /rpi/command': (req, res, next) => sails.hooks.policies.middleware.checktoken(req, res, next),
+        'get /rpi/devicetype': (req, res, next) => sails.hooks.policies.middleware.checktoken(req, res, next)
       },
       after: {
         'get /rpi/core': rpiController.infoCore,
@@ -28,7 +29,8 @@ module.exports = function(sails) {
         'get /rpi/network': rpiController.infoNetwork,
         'get /rpi/memory': rpiController.infoMemory,
         'get /rpi/stat': rpiController.stat,
-        'post /rpi/command': rpiController.sendCommand
+        'post /rpi/command': rpiController.sendCommand,
+        'get /rpi/devicetype': rpiController.getDeviceType
       }
     }
   };

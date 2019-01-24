@@ -17,6 +17,7 @@
       infoMemory: infoMemory,
       stat: stat,
       sendCommand: sendCommand,
+      getDeviceType: getDeviceType,
       successNotificationTranslated: successNotificationTranslated,
       errorNotificationTranslated: errorNotificationTranslated
     };
@@ -49,6 +50,10 @@
 
     function sendCommand(cmd) {
       return $http({method: 'POST', url: '/rpi/command/', data: cmd});
+  }
+
+  function getDeviceType() {
+    return $http({ method: 'GET', url: '/rpi/devicetype/' });
   }
 
     function successNotificationTranslated(key, complement) {

@@ -20,11 +20,17 @@
     vm.memory = '';
     vm.commandBash = '';
     vm.readyCommand = true;
+    vm.deviceTypes = [];
+    vm.commandToSend = null;
+    vm.returnCommand = '';
+    vm.showStatWifi = false;
 
     vm.refresh = refresh;
     vm.sendCommand = sendCommand;
-    vm.commandToSend = null;
-    vm.returnCommand = '';
+    vm.classTemperatureColor = classTemperatureColor;
+    vm.classVoltageColor = classVoltageColor;
+    vm.classUsageColor = classUsageColor;
+    vm.classPercentColor = classPercentColor;
 
 
 
@@ -40,6 +46,7 @@
         .then(function(data) {
           if (data.status == 200) {
             vm.stat = statNetwork(data.data)
+            vm.stat = statWifi(data.data)
           } else {
             rpiService.errorNotificationTranslated('ERROR')
           }
@@ -83,8 +90,17 @@
           } else {
             rpiService.errorNotificationTranslated('ERROR')
           }
+          return rpiService.getDeviceType()
+        })
+        .then(function(data) {
+          if (data.status == 200) {
+            vm.deviceTypes = data.data
+          } else {
+            rpiService.errorNotificationTranslated('ERROR')
+          }
           vm.ready = true;
           vm.remoteIsBusy = false;
+          waitNewValue();
           return
         })
         .catch(function(err) {
@@ -101,7 +117,21 @@
         }
       }
       stat.net = tempNet;
-      return stat
+      return stat;
+    }
+
+    function statWifi(stat) {
+      var wifi = stat.wifi;
+      var tempWifi = {};
+      for (var face in wifi) {
+        if (wifi[face].ssid && wifi[face].ssid.length) {
+          tempWifi[face] = wifi[face]
+          vm.showStatWifi = true
+        }
+      }
+      //console.log(tempWifi)
+      stat.wifi = tempWifi;
+      return stat;
     }
 
     function refresh() {
@@ -124,6 +154,56 @@
             vm.readyCommand = true;
           }
         })
+    }
+
+    function waitNewValue() {
+      io.socket.on('newDeviceState', function(deviceState) {
+        if (vm.deviceTypes.hasOwnProperty(deviceState.devicetype)) {
+          switch (vm.deviceTypes.deviceState.devicetype) {
+            case 'CPU_TEMP':
+              vm.core.temp_cpu = deviceState.value;
+              break;
+            case 'GPU_TEMP':
+              vm.core.temp_gpu = deviceState.value;
+              break;
+            case 'CPU_VOLTAGE':
+              vm.core.voltage = deviceState.value;
+              break;
+            case 'CPU_USAGE':
+              vm.core.usage = deviceState.value;
+              break;
+          }
+          //$scope.$apply();
+        }
+      });
+    }
+
+    function classTemperatureColor(temp) {
+      if (temp < 40) return 'label bg-blue'
+      if (temp < 50) return 'label bg-green'
+      if (temp < 70) return 'label bg-orange'
+      return 'label bg-red'
+    }
+
+    // from 0.8V to 1.4V
+    function classVoltageColor(voltage) {
+      if (voltage < 0.9) return 'label bg-blue'
+      if (voltage < 1.2) return 'label bg-green'
+      if (voltage < 1.3) return 'label bg-orange'
+      return 'label bg-red'
+    }
+
+    function classUsageColor(usage) {
+      if (usage < 20) return 'label bg-blue'
+      if (usage < 40) return 'label bg-green'
+      if (usage < 80) return 'label bg-orange'
+      return 'label bg-red'
+    }
+
+    function classPercentColor(percent) {
+      let value = parseInt(percent);
+      if (value > 80) return 'text-red'
+      if (value > 60) return 'text-orange'
 
     }
   }
