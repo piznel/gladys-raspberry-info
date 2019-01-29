@@ -88,7 +88,8 @@ var translationsEN = {
   BOX_TEMPERATURE_CPU: "CPU temperature",
   BOX_VOLTAGE_CPU: "CPU voltage",
   BOX_CHARGE_CPU: "CPU charge",
-  BOX_RAM_FREE: "Free RAM"
+  BOX_RAM_FREE: "Free RAM",
+  LISTENING_PORT: "Listening port"
 };
 
 var translationsFR = {
@@ -181,7 +182,8 @@ var translationsFR = {
   BOX_TEMPERATURE_CPU: "Température CPU",
   BOX_VOLTAGE_CPU: "Tension CPU",
   BOX_CHARGE_CPU: "Charge CPU",
-  BOX_RAM_FREE: "RAM libre"
+  BOX_RAM_FREE: "RAM libre",
+  LISTENING_PORT:"Port à l'écoute",
 };
 
 angular

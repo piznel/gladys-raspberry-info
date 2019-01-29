@@ -24,20 +24,57 @@
       </div>
     </div>
     <div class="container-fluid">
-      <div class="row" ng-show="!vm.remoteIsBusy" class="ng-cloak">
-        <div class="col-xs-6">
-          <div id="tempCpuGauge"></div>
+      <div class="row" ng-show="!vm.socketCpuIsBusy" class="ng-cloak">
+        <div class="col-xs-12 col-sm-9">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-xs-6">
+                <div id="tempCpuGauge"></div>
+              </div>
+              <div class="col-xs-6">
+                <div id="voltageCpuGauge"></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-6">
+                <div id="chargeCpuGauge"></div>
+              </div>
+              <div class="col-xs-6">
+                <div id="ramGauge"></div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="col-xs-6">
-          <div id="voltageCpuGauge"></div>
+        <div class="table-responsive">
+          <table class="table table-condensed">
+            <tr>
+              <th colspan="2">
+                {{ 'LISTENING_PORT' | translate }}
+              </th>
+            </tr>
+            <tr>
+              <td>80</td>
+              <td><i class="fa fa-spinner" ng-show="vm.socketPortIsBusy"></i><i ng-show="!vm.socketPortIsBusy" ng-class="vm.port80 ? 'fa fa-check text-green':'fa fa-times-circle-o text-red'"></i></td>
+            </tr>
+            <tr>
+              <td>8080</td>
+              <td><i class="fa fa-spinner" ng-show="vm.socketPortIsBusy"></i><i ng-show="!vm.socketPortIsBusy" ng-class="vm.port8080 ? 'fa fa-check text-green':'fa fa-times-circle-o text-red'"></i></td>
+            </tr>
+            <tr>
+              <td>443</td>
+              <td><i class="fa fa-spinner" ng-show="vm.socketPortIsBusy"></i><i ng-show="!vm.socketPortIsBusy" ng-class="vm.port443 ? 'fa fa-check text-green':'fa fa-times-circle-o text-red'"></i></td>
+            </tr>
+            <tr>
+              <td>3306</td>
+              <td><i class="fa fa-spinner" ng-show="vm.socketPortIsBusy"></i><i ng-show="!vm.socketPortIsBusy" ng-class="vm.port3306 ? 'fa fa-check text-green':'fa fa-times-circle-o text-red'"></i></td>
+            </tr>
+            <tr>
+              <td>1337</td>
+              <td><i class="fa fa-spinner" ng-show="vm.socketPortIsBusy"></i><i ng-show="!vm.socketPortIsBusy" ng-class="vm.port1337 ? 'fa fa-check text-green':'fa fa-times-circle-o text-red'"></i></td>
+            </tr>
+          </table>
         </div>
-        <div class="col-xs-6">
-          <div id="chargeCpuGauge"></div>
-        </div>
-        <div class="col-xs-6">
-          <div id="ramGauge"></div>
-        </div>
+
       </div>
     </div>
   </div>
-</div>

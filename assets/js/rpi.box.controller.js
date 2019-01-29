@@ -9,7 +9,8 @@
 
   function rpiboxCtrl( $http, $scope, $rootScope, $translate) {
     var vm = this;
-    vm.remoteIsBusy = false;
+    vm.socketCpuIsBusy = false;
+    vm.socketPortIsBusy = false;
 
     vm.tempCpuGauge;
     vm.voltageCpuGauge;
@@ -21,7 +22,8 @@
     vm.init = init;
 
     function init(id) {
-      vm.remoteIsBusy = true;
+      vm.socketCpuIsBusy = true;
+      vm.socketPortIsBusy = true;
       $rootScope.$on('$translateChangeSuccess', function() {
         createGauge();
         waitForNewValue();
@@ -181,12 +183,22 @@
 
     // waiting for websocket message
     function waitForNewValue() {
-      io.socket.on('CPU_STAT', function(deviceState) {
-        vm.tempCpuGauge.refresh(deviceState.temperature)
-        vm.voltageCpuGauge.refresh(deviceState.voltage)
-        vm.chargeCpuGauge.refresh(deviceState.usage)
-        vm.ramGauge.refresh(deviceState.ram)
-        vm.remoteIsBusy = false;
+      io.socket.on('CPU_STAT', function(stat) {
+        vm.tempCpuGauge.refresh(stat.temperature);
+        vm.voltageCpuGauge.refresh(stat.voltage);
+        vm.chargeCpuGauge.refresh(stat.usage);
+        vm.ramGauge.refresh(stat.ram);
+        vm.socketCpuIsBusy = false;
+        $scope.$apply()
+      });
+
+      io.socket.on('PORT_STAT', function(port) {
+        vm.port80 = port['80'];
+        vm.port443 = port['443'];
+        vm.port1337 = port['1337'];
+        vm.port3306 = port['3306'];
+        vm.port8080 = port['8080'];
+        vm.socketPortIsBusy = false;
         $scope.$apply()
       });
     }
