@@ -84,7 +84,11 @@ var translationsEN = {
   STATUS_CONNEXION: "Status",
   DISK_DETAIL: "Detail",
   FILE_SYSTEM: "File system",
-  FILE_MOUNT: "Mounted on"
+  FILE_MOUNT: "Mounted on",
+  BOX_TEMPERATURE_CPU: "CPU temperature",
+  BOX_VOLTAGE_CPU: "CPU voltage",
+  BOX_CHARGE_CPU: "CPU charge",
+  BOX_RAM_FREE: "Free RAM"
 };
 
 var translationsFR = {
@@ -173,7 +177,11 @@ var translationsFR = {
   STATUS_CONNEXION: "Status",
   DISK_DETAIL: "Détail  ",
   FILE_SYSTEM: "Sys. de fichier",
-  FILE_MOUNT: "Monté sur"
+  FILE_MOUNT: "Monté sur",
+  BOX_TEMPERATURE_CPU: "Température CPU",
+  BOX_VOLTAGE_CPU: "Tension CPU",
+  BOX_CHARGE_CPU: "Charge CPU",
+  BOX_RAM_FREE: "RAM libre"
 };
 
 angular

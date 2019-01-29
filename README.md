@@ -32,3 +32,7 @@ In the "Module Configuration" page, you will also find information about your Ra
   * `nmap -sP 192.168.0.*`: check which hosts are live and up in Network "192.168.0.*"
 
 * In the "**Security**" tab, you will find a list of current connections to your rapsberry, as well as a button displaying the list of the last 5 connections and their status.
+
+4. The monitoring box
+
+An additional box has been added in Gladys. Test it!

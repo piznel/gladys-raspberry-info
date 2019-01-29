@@ -1,0 +1,32 @@
+<!-- box-->
+<script src="/hooks/rpi-info/js/justgage.js"></script>
+<script src="/hooks/rpi-info/js/raphael-2.1.4.min.js"></script>
+<script src="/hooks/rpi-info/js/rpi.box.controller.js"></script>
+<script src="/hooks/rpi-info/js/rpi.config.js"></script>
+
+<div class="box box-primary" data-ng-controller="rpiboxCtrl as vm" ng-init="vm.init(<%= boxId %>);">
+
+  <div class="box-header with-border">
+    <i class="fa fa-heartbeat"></i>
+    <h3 class="box-title">Raspberry monitoring</h3>
+    <span ng-show="vm.deviceId" class="ng-cloak">
+      <div class="pull-right box-tools">
+      </div>
+  </div>
+  <div class="box-body">
+    <div class="row">
+        <div class="col-xs-6">
+        <div id="tempCpuGauge"></div>
+      </div>
+      <div class="col-xs-6">
+        <div id="voltageCpuGauge"></div>
+      </div>
+      <div class="col-xs-6">
+        <div id="chargeCpuGauge"></div>
+      </div>
+      <div class="col-xs-6">
+          <div id="ramGauge"></div>
+        </div>
+    </div>
+  </div>
+</div>
