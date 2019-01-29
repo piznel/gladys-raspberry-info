@@ -7,7 +7,7 @@
 
   rpiboxCtrl.$inject = ['$http', '$scope', '$rootScope', '$translate'];
 
-  function rpiboxCtrl($http, $scope, $rootScope, $translate) {
+  function rpiboxCtrl( $http, $scope, $rootScope, $translate) {
     var vm = this;
     vm.remoteIsBusy = false;
 
@@ -187,6 +187,7 @@
         vm.chargeCpuGauge.refresh(deviceState.usage)
         vm.ramGauge.refresh(deviceState.ram)
         vm.remoteIsBusy = false;
+        $scope.$apply()
       });
     }
   }
