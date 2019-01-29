@@ -198,6 +198,7 @@
         vm.port1337 = port['1337'];
         vm.port3306 = port['3306'];
         vm.port8080 = port['8080'];
+        vm.port22 = port['22'];
         vm.socketPortIsBusy = false;
         $scope.$apply()
       });
