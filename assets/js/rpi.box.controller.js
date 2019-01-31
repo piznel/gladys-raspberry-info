@@ -5,30 +5,39 @@
     .module('gladys')
     .controller('rpiboxCtrl', rpiboxCtrl);
 
-  rpiboxCtrl.$inject = ['$http', '$scope', '$rootScope', '$translate'];
+  rpiboxCtrl.$inject = ['$http', '$scope', '$rootScope', '$translate', 'rpiService'];
 
-  function rpiboxCtrl( $http, $scope, $rootScope, $translate) {
+  function rpiboxCtrl($http, $scope, $rootScope, $translate, rpiService) {
     var vm = this;
     vm.socketCpuIsBusy = false;
     vm.socketPortIsBusy = false;
+    vm.listPort = '';
 
     vm.tempCpuGauge;
     vm.voltageCpuGauge;
     vm.ramGauge;
     vm.chargeCpuGauge;
 
-
-
     vm.init = init;
+    vm.saveParam = saveParam;
 
     function init(id) {
+      vm.boxId = id;
       vm.socketCpuIsBusy = true;
       vm.socketPortIsBusy = true;
-      $rootScope.$on('$translateChangeSuccess', function() {
-        createGauge();
-        waitForNewValue();
-      });
 
+      $rootScope.$on('$translateChangeSuccess', function() {
+        rpiService.getBoxParams(vm.boxId)
+          .then(function(data) {
+            if (data.status == 200) {
+              vm.listPort = data.data;
+              createGauge();
+              waitForNewValue();
+            } else {
+              rpiService.errorNotificationTranslated('ERROR')
+            }
+          });
+      });
       return
     }
 
@@ -155,7 +164,6 @@
         counter: true
       });
 
-
       vm.ramGauge = new JustGage({
         id: "ramGauge",
         value: getRandomInt(0, 100),
@@ -180,6 +188,17 @@
       });
     }
 
+    function saveParam() {
+      var params = Array.isArray(vm.listPort) ? vm.listPort : vm.listPort.split(',');
+      rpiService.savBoxParams(vm.boxId, params)
+        .then(function(data) {
+          if (data.status == 200) {
+            vm.listPort = data.data.port;
+          } else {
+            rpiService.errorNotificationTranslated('ERROR')
+          }
+        })
+    }
 
     // waiting for websocket message
     function waitForNewValue() {
@@ -193,12 +212,7 @@
       });
 
       io.socket.on('PORT_STAT', function(port) {
-        vm.port80 = port['80'];
-        vm.port443 = port['443'];
-        vm.port1337 = port['1337'];
-        vm.port3306 = port['3306'];
-        vm.port8080 = port['8080'];
-        vm.port22 = port['22'];
+        vm.port = port;
         vm.socketPortIsBusy = false;
         $scope.$apply()
       });

@@ -20,7 +20,9 @@ module.exports = function(sails) {
         'get /rpi/memory': (req, res, next) => sails.hooks.policies.middleware.checktoken(req, res, next),
         'get /rpi/stat': (req, res, next) => sails.hooks.policies.middleware.checktoken(req, res, next),
         'post /rpi/command': (req, res, next) => sails.hooks.policies.middleware.checktoken(req, res, next),
-        'get /rpi/devicetype': (req, res, next) => sails.hooks.policies.middleware.checktoken(req, res, next)
+        'get /rpi/devicetype': (req, res, next) => sails.hooks.policies.middleware.checktoken(req, res, next),
+        'get /rpi/box/:id': (req, res, next) => sails.hooks.policies.middleware.checktoken(req, res, next),
+        'patch /rpi/box/:id': (req, res, next) => sails.hooks.policies.middleware.checktoken(req, res, next)
       },
       after: {
         'get /rpi/core': rpiController.infoCore,
@@ -30,7 +32,9 @@ module.exports = function(sails) {
         'get /rpi/memory': rpiController.infoMemory,
         'get /rpi/stat': rpiController.stat,
         'post /rpi/command': rpiController.sendCommand,
-        'get /rpi/devicetype': rpiController.getDeviceType
+        'get /rpi/devicetype': rpiController.getDeviceType,
+        'get /rpi/box/:id': rpiController.getBoxParams,
+        'patch /rpi/box/:id': rpiController.saveBoxParams
       }
     }
   };

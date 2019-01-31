@@ -5,7 +5,7 @@
     .module('gladys')
     .factory('rpiService', rpiService);
 
-    rpiService.$inject = ['$http', 'Notification', '$translate'];
+  rpiService.$inject = ['$http', 'Notification', '$translate'];
 
   function rpiService($http, Notification, $translate) {
 
@@ -18,6 +18,8 @@
       stat: stat,
       sendCommand: sendCommand,
       getDeviceType: getDeviceType,
+      getBoxParams: getBoxParams,
+      savBoxParams: savBoxParams,
       successNotificationTranslated: successNotificationTranslated,
       errorNotificationTranslated: errorNotificationTranslated
     };
@@ -49,12 +51,20 @@
     }
 
     function sendCommand(cmd) {
-      return $http({method: 'POST', url: '/rpi/command/', data: cmd});
-  }
+      return $http({ method: 'POST', url: '/rpi/command/', data: cmd });
+    }
 
-  function getDeviceType() {
-    return $http({ method: 'GET', url: '/rpi/devicetype/' });
-  }
+    function getDeviceType() {
+      return $http({ method: 'GET', url: '/rpi/devicetype/' });
+    }
+
+    function getBoxParams(id) {
+      return $http({ method: 'GET', url: '/rpi/box/' + id });
+    }
+
+    function savBoxParams(id, params) {
+      return $http({ method: 'PATCH', url: '/rpi/box/' + id, data: params });
+    }
 
     function successNotificationTranslated(key, complement) {
       return $translate(key)
