@@ -89,7 +89,9 @@ var translationsEN = {
   BOX_VOLTAGE_CPU: "CPU voltage",
   BOX_CHARGE_CPU: "CPU charge",
   BOX_RAM_FREE: "Free RAM",
-  LISTENING_PORT: "Listening port"
+  LISTENING_PORT: "Listening port",
+  LIST_PORT_HELP: "list of ports to be monitored, separated by a comma. Leave blank to reset the default ports."
+  
 };
 
 var translationsFR = {
@@ -184,6 +186,7 @@ var translationsFR = {
   BOX_CHARGE_CPU: "Charge CPU",
   BOX_RAM_FREE: "RAM libre",
   LISTENING_PORT:"Port à l'écoute",
+  LIST_PORT_HELP: "liste des ports à surveiller, séparés par une virgule. Laisser vide pour réinitialiser les ports par défaut."
 };
 
 angular

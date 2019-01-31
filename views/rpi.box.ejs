@@ -15,7 +15,7 @@
     <div class="box-body">
       <label>{{ 'LISTENING_PORT' | translate }}</label>
       <div class="input-group input-group-sm">
-        <input type="text" class="form-control" ng-model="vm.listPort">
+        <input type="text" class="form-control" ng-model="vm.listPort" class="text-muted" data-toggle="tooltip" data-original-title="{{ 'LIST_PORT_HELP' | translate }}">
         <span class="input-group-btn">
           <button type="button" class="btn btn-info btn-flat" ng-click="vm.saveParam()" data-toggle="collapse" href="#listPort" aria-expanded="true"><i class="fa fa-refresh"></i></button>
         </span>

@@ -1,6 +1,6 @@
 {
   "name": "gladys-raspberry-info",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "getting information from Raspberry in Gladys",
   "main": "index.js",
   "directories": {
