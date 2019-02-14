@@ -1,5 +1,7 @@
 # Gladys-Raspberry-Info
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/piznel/gladys-gaspberry-info.svg)](https://greenkeeper.io/)
+
 A module that turns possible getting information from Raspberry, such as GPU/CPU temperature, serial number, IP, etc. since Gladys.
 <div align="center">
 <img src="https://user-images.githubusercontent.com/25089531/51909914-08d62d80-23ce-11e9-9bfb-b1003a866393.png" width="500" />
